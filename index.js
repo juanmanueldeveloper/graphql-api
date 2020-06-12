@@ -8,7 +8,6 @@ const { join } = require('path')
 const resolvers = require('./lib/resolvers')
 require('dotenv').config()
 const db = require('./db')
-const { mongo } = require('mongoose')
 
 const app = express()
 const port = process.env.port || 3000
