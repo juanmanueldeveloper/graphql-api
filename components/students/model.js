@@ -5,24 +5,16 @@ const mongoose = require('mongoose')
 const schema = mongoose.Schema
 
 const mySchema = new schema({
-    title: {
+    name: {
         type: String,
         required: true
     },
-    teacher: {
+    email: {
         type: String,
         required: true
-    },
-    description: {
-        type: String,
-        required: true,
-    },
-    topic: {
-        type: String,
-        required: true,
     }
 })
 
-const model = mongoose.model('courses', mySchema)
+const model = mongoose.model('students', mySchema)
 
 module.exports = model

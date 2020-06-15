@@ -2,40 +2,40 @@
 
 const store = require('./store')
 
-const addCourse = (course) =>{
+const addStudent = (student) =>{
     return new Promise((resolve, reject) => {
-        if(!course){
+        if(!student){
             reject('Invalid Data')
         }else{
-            resolve(store.add(course))
+            resolve(store.add(student))
         }
     })
 }
 
-const getCourses = () => {
+const getStudents = () => {
     return new Promise((resolve, reject) =>{
         resolve(store.list())
     })
 } 
 
-const getCourse = (id) => {
+const getStudent = (id) => {
     return new Promise((resolve, reject) =>{
         resolve(store.get(id))
     })
 } 
 
-const updateCourse = (id, course) =>{
+const updateStudent = (id, student) =>{
     return new Promise(async (resolve, reject) => {
-        if(!id || !course){
+        if(!id || !student){
             reject('La datos son incorrectos')
         }else{
-            const result = await store.update(id, course)
+            const result = await store.update(id, student)
             resolve(result)
         }
     })
 }
 
-const deleteCourse= (id) =>{
+const deleteStudent = (id) =>{
     return new Promise(async (resolve, reject) => {
         if(!id){
             reject('Data Invalid')
@@ -47,9 +47,9 @@ const deleteCourse= (id) =>{
 }
 
 module.exports = {
-    getCourses,
-    getCourse,
-    addCourse,
-    updateCourse,
-    deleteCourse
+    getStudents,
+    getStudent,
+    addStudent,
+    updateStudent,
+    deleteStudent
 }

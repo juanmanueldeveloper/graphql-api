@@ -1,9 +1,14 @@
+'use strict'
+
 const Model = require('./model')
 
 
-const addCourse = (message) => {
-    const myMessage = new Model(message);
-    myMessage.save()
+const addCourse = (course) => {
+    return new Promise(async (resolve, reject) =>{
+        const newCourse = new Model(course);
+        resolve(newCourse.save())
+    })
+
 }
 
 const listCourses = () => {
@@ -23,27 +28,32 @@ const getCourse = (id) => {
     })
 }
 
-const UpdateCourse = async (id, message) => {
-    const foundMessage = await Model.findOne({
+const updateCourse = async (id, course) => {
+    let foundCourse = await Model.findOne({
         _id : id
     })
 
-    foundMessage.message = message
-    const newMessage = await foundMessage.save()
-    return newMessage
+    let data = Object.assign(foundCourse,course)
+
+    const newCourse = await data.save()
+    return newCourse
 }
 
-const deleteCourse = async (id) =>{
-    return Model.deleteOne({
-        _id : id
+const deleteCourse = (id) =>{
+    return new Promise(async (resolve, reject) =>{
+        const deletedStudent = await  Model.deleteOne({
+            _id : id
+        })
+
+        resolve(deletedStudent.ok ? true : false) // 1 = True Other = False
     })
 }
 
 
 module.exports = {
-    //add :addCourse,
     list: listCourses,
     get: getCourse,
-    //update: UpdateCourse,
-    //delete: deleteCourse
+    add :addCourse,
+    update: updateCourse,
+    delete: deleteCourse
 }
