@@ -41,12 +41,32 @@ const updateCourse = async (id, course) => {
 
 const deleteCourse = (id) =>{
     return new Promise(async (resolve, reject) =>{
-        const deletedStudent = await  Model.deleteOne({
+        const result = await  Model.deleteOne({
             _id : id
         })
 
-        resolve(deletedStudent.ok ? true : false) // 1 = True Other = False
+        resolve(result.ok ? true : false) // 1 = True Other = False
     })
+}
+
+const addStudentToCourse = (courseID, studentID) => {
+    return new Promise(async (resolve, reject) =>{
+        let course = await Model.findOne({
+            _id : courseID
+        })
+
+        if(!course) reject(false)
+
+        const result = await Model.updateOne({
+            _id : courseID
+        },
+        {
+            $addToSet: { students: { _id : studentID}}
+        })
+
+        resolve(result.ok ? true : false) // 1 = True Other = False
+    })
+
 }
 
 
@@ -55,5 +75,6 @@ module.exports = {
     get: getCourse,
     add :addCourse,
     update: updateCourse,
-    delete: deleteCourse
+    delete: deleteCourse,
+    addPeople: addStudentToCourse
 }

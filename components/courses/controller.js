@@ -46,10 +46,21 @@ const deleteCourse= (id) =>{
     })
 }
 
+const addPeople = (courseID, studentID) =>{
+    return new Promise((resolve, reject) => {
+        if(!courseID || !studentID){
+            reject('Invalid Data')
+        }else{
+            resolve(store.addPeople(courseID, studentID))
+        }
+    })
+}
+
 module.exports = {
     getCourses,
     getCourse,
     addCourse,
     updateCourse,
-    deleteCourse
+    deleteCourse,
+    addPeople
 }

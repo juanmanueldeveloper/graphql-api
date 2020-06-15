@@ -20,7 +20,11 @@ const mySchema = new schema({
     topic: {
         type: String,
         required: true,
-    }
+    },
+    students: [{
+        type: schema.ObjectId,
+        ref: 'students',
+    }],
 })
 
 const model = mongoose.model('courses', mySchema)

@@ -58,5 +58,5 @@ module.exports = {
     get: getStudent,
     add : addStudent,
     update: updateStudent,
-    delete: deleteStudent
+    delete: deleteStudent,
 }
