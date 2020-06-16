@@ -14,8 +14,8 @@ const port = process.env.port || 3000
 
 // Reading schema
 const typeDefs = readFileSync(join(__dirname, 'lib', 'schema.graphql'), 'utf-8')
-const schema = makeExecutableSchema({ typeDefs, resolvers})
-const { DB, DB_USER, DB_PASS, DB_HOST, DB_NAME} = process.env
+const schema = makeExecutableSchema({ typeDefs, resolvers })
+const { DB, DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env
 const mongoURL = `${DB}${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`
 
 // Execute query
