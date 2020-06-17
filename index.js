@@ -6,11 +6,13 @@ const graphMiddleware = require('express-graphql')
 const { readFileSync } = require('fs')
 const { join } = require('path')
 const resolvers = require('./lib/resolvers')
+const cors = require('cors')
 require('dotenv').config()
 const db = require('./db')
 
 const app = express()
 const port = process.env.port || 3000
+const isDev = process.env.NODE_ENV !== 'production'
 
 // Reading schema
 const typeDefs = readFileSync(join(__dirname, 'lib', 'schema.graphql'), 'utf-8')
@@ -21,10 +23,12 @@ const mongoURL = `${DB}${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?retryWrites=t
 // Execute query
 // graphql(schema, '{ hello, saludo}', resolvers).then(data => console.log(data))
 
+app.use(cors())
+
 app.use('/api', graphMiddleware({
   schema: schema,
   rootValue: resolvers,
-  graphiql: true
+  graphiql: isDev
 }))
 
 db(mongoURL)
