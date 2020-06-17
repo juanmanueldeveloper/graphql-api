@@ -24,7 +24,10 @@ const mySchema = new Schema({
   students: [{
     type: Schema.ObjectId,
     ref: 'students'
-  }]
+  }],
+  level: {
+    type: String
+  },
 })
 
 const model = mongoose.model('courses', mySchema)

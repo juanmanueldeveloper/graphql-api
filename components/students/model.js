@@ -12,6 +12,10 @@ const mySchema = new Schema({
   email: {
     type: String,
     required: true
+  },
+  phone: {
+    type: String,
+    required: true
   }
 })
 

@@ -51,3 +51,41 @@ Requiere un objeto JSON como:
   "course": "5cb4b8ce75f954a0585f7be3"
 }
 ```
+
+## Interfaces
+
+```graphql
+mutation createNewMonitor($monitorInput: PersonInput!)
+	{
+    createPerson(input: $monitorInput){
+      _id
+      name
+    }
+}
+
+query getPeopleMonitor
+{
+  getPeople{
+    _id
+    name
+    email
+    ... on Monitor{
+      phone
+    }
+    ... on Student{
+      avatar
+    }
+  }
+}
+```
+Requiere un objeto JSON como:
+
+```json
+{
+  "monitorInput": {
+    "name": "Monitor 1",
+    "email": "monitor1@gmail.com",
+    "phone": "99999999"
+  }
+}
+```
