@@ -89,3 +89,30 @@ Requiere un objeto JSON como:
   }
 }
 ```
+
+## Directives
+
+```graphql
+query getPeopleMonitor($monitor : Boolean!, $student: Boolean!)
+{
+  getPeople{
+    _id
+    name
+    email
+    ... on Monitor @include(if: $monitor){
+      phone
+    }
+    ... on Student @skip(if: $student){
+      avatar
+    }
+  }
+}
+```
+Requiere un objeto JSON como:
+
+```json
+{
+  "monitor": true,
+  "student": true
+}
+```

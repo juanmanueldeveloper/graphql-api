@@ -9,7 +9,7 @@ type Course {
     title: String!
     teacher: String
     description: String!
-    topic: String
+    topic: String @deprecated
     students: [Student]
     level: Level
 }
@@ -78,6 +78,6 @@ type Mutation {
     createPerson(input: PersonInput!): Person
     editPerson(_id: ID!, input : PersonEditInput!) : Person
     deletePerson(_id: ID!) : Boolean
-    
+
     addPeople(courseID : ID!, studentID : ID!) : Boolean
 }
