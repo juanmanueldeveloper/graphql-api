@@ -66,11 +66,22 @@ const addStudentToCourse = (courseID, studentID) => {
   })
 }
 
+const searchCourses = (keyword) => {
+  return new Promise(async (resolve, reject) => {
+    const courses = await Model.find({
+      $text: { $search: keyword}
+    })
+    
+    resolve(courses)
+  })
+}
+
 module.exports = {
   list: listCourses,
   get: getCourse,
   add: addCourse,
   update: updateCourse,
   delete: deleteCourse,
-  addPeople: addStudentToCourse
+  addPeople: addStudentToCourse,
+  search: searchCourses
 }

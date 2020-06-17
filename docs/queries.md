@@ -116,3 +116,31 @@ Requiere un objeto JSON como:
   "student": true
 }
 ```
+
+## Union - Search
+
+```graphql
+{
+  searchItems(keyword : "gmail"){
+    __typename
+    ... on Course{
+      title
+      description
+    }
+    ... on Student{
+      name
+      email
+    }
+    ... on Monitor{
+      name
+      email
+    }
+  }
+}
+```
+Requiere crear indices en mongo:
+
+```mongodb
+SHELL cluster-mongo-graph-shard-0:PRIMARY> db.courses.createIndex({"$**":"text"})
+SHELL cluster-mongo-graph-shard-0:PRIMARY> db.students.createIndex({"$**":"text"})
+```

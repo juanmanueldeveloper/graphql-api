@@ -51,8 +51,13 @@ const getPeople = (ids) => {
     let data = await store.getPeople(ids) 
      resolve(data)
   })
+}
 
-
+const searchStudents = (keyword) => {
+  return new Promise(async (resolve, reject) => {
+    let data = await store.search(keyword) 
+     resolve(data)
+  })
 }
 
 module.exports = {
@@ -61,5 +66,6 @@ module.exports = {
   addStudent,
   updateStudent,
   deleteStudent,
-  getPeople
+  getPeople,
+  searchStudents
 }

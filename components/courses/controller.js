@@ -56,11 +56,18 @@ const addPeople = (courseID, studentID) => {
   })
 }
 
+const searchCourses = (keyword) => {
+  return new Promise((resolve, reject) => {
+    resolve(store.search(keyword))
+  })
+}
+
 module.exports = {
   getCourses,
   getCourse,
   addCourse,
   updateCourse,
   deleteCourse,
-  addPeople
+  addPeople,
+  searchCourses
 }

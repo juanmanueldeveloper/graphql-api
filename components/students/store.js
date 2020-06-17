@@ -58,11 +58,22 @@ const getPeople = (ids) => {
   })
 }
 
+const searchStudents = (keyword) => {
+  return new Promise(async (resolve, reject) => {
+    const students = await Model.find({
+      $text: { $search: keyword}
+    })
+
+    resolve(students)
+  })
+}
+
 module.exports = {
   list: listStudent,
   get: getStudent,
   add: addStudent,
   update: updateStudent,
   delete: deleteStudent,
-  getPeople
+  getPeople,
+  search: searchStudents
 }
